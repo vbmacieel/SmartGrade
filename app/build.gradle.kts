@@ -1,11 +1,12 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("kotlin-kapt")
 }
 
 android {
     namespace = "com.smartgrade"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.smartgrade"
@@ -44,8 +45,8 @@ dependencies {
     val koinVersion = "3.4.0"
 
     //Room
-    implementation("androidx.room:room-runtime:$roomVersion")
-    annotationProcessor("androidx.room:room-compiler:$roomVersion")
+    implementation("androidx.room:room-ktx:$roomVersion")
+    kapt("androidx.room:room-compiler:$roomVersion")
 
     //Navigation
     implementation("androidx.navigation:navigation-fragment-ktx:$navVersion")
