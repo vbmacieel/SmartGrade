@@ -5,7 +5,7 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class Subject(
-    @PrimaryKey(autoGenerate = true) val subjectId: Int,
+    @PrimaryKey(autoGenerate = true) var subjectId: Int = 0,
     val name: String,
-    val totalPoints: Int
+    var totalPoints: Int
 )

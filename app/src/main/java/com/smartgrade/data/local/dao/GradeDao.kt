@@ -7,19 +7,19 @@ import androidx.room.Query
 import androidx.room.Transaction
 import androidx.room.Update
 import com.smartgrade.data.local.model.Grade
-import com.smartgrade.data.local.model.relation.SubjectWithGrades
+import com.smartgrade.data.local.model.relationship.SubjectGrades
 
 @Dao
 interface GradeDao {
     @Transaction
-    @Query("SELECT * FROM grade")
-    suspend fun getGradesWithSubject(): List<SubjectWithGrades>
+    @Query("SELECT * FROM subject")
+    suspend fun getGradesWithSubject(): List<SubjectGrades>
 
     @Insert
     suspend fun save(grade: Grade)
 
     @Update
-    suspend fun update(grade: Grade, oldGradeId: String)
+    suspend fun update(grade: Grade)
 
     @Delete
     suspend fun delete(grade: Grade)

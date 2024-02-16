@@ -1,15 +1,16 @@
-package com.smartgrade.data.local.model.relation
+package com.smartgrade.data.local.model.relationship
 
 import androidx.room.Embedded
 import androidx.room.Relation
 import com.smartgrade.data.local.model.Grade
 import com.smartgrade.data.local.model.Subject
 
-data class SubjectWithGrades(
+data class SubjectGrades(
     @Embedded val subject: Subject,
     @Relation(
         parentColumn = "subjectId",
-        entityColumn = "subjectGradeId"
+        entityColumn = "subjectGradeId",
+        entity = Grade::class
     )
     val grades: List<Grade>
 )

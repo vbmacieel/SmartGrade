@@ -3,8 +3,8 @@ package com.smartgrade.data.local.dao
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import androidx.room.Update
 import com.smartgrade.data.local.model.Subject
 
 @Dao
@@ -12,11 +12,14 @@ interface SubjectDao {
     @Query("SELECT * FROM subject")
     suspend fun findAll(): List<Subject>
 
-    @Insert
+    @Query("SELECT * FROM subject WHERE subjectId = :id")
+    suspend fun findSubjectById(id: Int): Subject
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun save(subject: Subject)
 
-    @Update
-    suspend fun update(subject: Subject, oldSubjectId: String)
+    @Query("UPDATE subject SET totalPoints = :newTotalPoints WHERE subjectId = :id")
+    suspend fun updateTotalPoints(id: Int, newTotalPoints: Int)
 
     @Delete
     suspend fun delete(subject: Subject)

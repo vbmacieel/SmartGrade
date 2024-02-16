@@ -5,7 +5,7 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class Grade(
-    @PrimaryKey(autoGenerate = true) val gradeId: Int,
+    @PrimaryKey(autoGenerate = true) var gradeId: Long,
     var name: String,
     var earnedPoints: Long,
     var totalPoints: Long,
