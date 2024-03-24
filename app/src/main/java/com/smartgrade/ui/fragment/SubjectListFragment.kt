@@ -7,15 +7,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.smartgrade.R
-import com.smartgrade.data.local.model.Subject
-import com.smartgrade.data.repository.SubjectRepository
 import com.smartgrade.databinding.FragmentListSubjectBinding
 import com.smartgrade.ui.adapter.SubjectRecyclerViewAdapter
 import com.smartgrade.ui.viewmodel.MainViewModel
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SubjectListFragment : Fragment() {
