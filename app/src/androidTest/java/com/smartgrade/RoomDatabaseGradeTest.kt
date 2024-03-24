@@ -46,7 +46,7 @@ class RoomDatabaseGradeTest {
     fun saveNewGrade() = runBlocking {
         val grade = Grade(1, "Prova 1", 50, 100, 1)
         gradeDao.save(grade)
-        val findGradesWithSubject = gradeDao.findGradesWithSubject()
+        val findGradesWithSubject = gradeDao.findGradesFromSubject()
         assertTrue(findGradesWithSubject[0].grades.contains(grade))
     }
 
@@ -57,7 +57,7 @@ class RoomDatabaseGradeTest {
 
         val newGrade = Grade(2, "Prova 2", 50, 200, 1)
         gradeDao.save(newGrade)
-        val findGradesWithSubject = gradeDao.findGradesWithSubject()
+        val findGradesWithSubject = gradeDao.findGradesFromSubject()
         assertTrue(findGradesWithSubject[0].grades.contains(newGrade))
     }
 
@@ -67,7 +67,7 @@ class RoomDatabaseGradeTest {
         gradeDao.save(grade)
 
         gradeDao.delete(grade)
-        val findGradesWithSubject = gradeDao.findGradesWithSubject()
+        val findGradesWithSubject = gradeDao.findGradesFromSubject()
         assertFalse(findGradesWithSubject[0].grades.contains(grade))
     }
 }

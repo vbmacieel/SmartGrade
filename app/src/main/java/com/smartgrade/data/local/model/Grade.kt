@@ -9,5 +9,5 @@ data class Grade(
     var name: String,
     var earnedPoints: Long,
     var totalPoints: Long,
-    val subjectGradeId: Int
+    val subjectId: Int
 )

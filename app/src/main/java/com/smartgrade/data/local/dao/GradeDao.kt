@@ -5,16 +5,12 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import androidx.room.Transaction
-import androidx.room.Update
 import com.smartgrade.data.local.model.Grade
-import com.smartgrade.data.local.model.relationship.SubjectGrades
 
 @Dao
 interface GradeDao {
-    @Transaction
-    @Query("SELECT * FROM subject")
-    suspend fun findGradesWithSubject(): List<SubjectGrades>
+    @Query("SELECT * FROM grade WHERE subjectId = :subjectId")
+    suspend fun findGradesFromSubject(subjectId: Int): List<Grade>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun save(grade: Grade)
