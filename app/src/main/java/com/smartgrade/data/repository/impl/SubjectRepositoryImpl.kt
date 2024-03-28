@@ -2,13 +2,14 @@ package com.smartgrade.data.repository.impl
 
 import com.smartgrade.data.local.dao.SubjectDao
 import com.smartgrade.data.local.model.Subject
+import com.smartgrade.data.local.model.relationship.SubjectPoints
 import com.smartgrade.data.repository.SubjectRepository
 
 class SubjectRepositoryImpl(
     private val subjectDao: SubjectDao
 ) : SubjectRepository {
 
-    override suspend fun findAll(): List<Subject> {
+    override suspend fun findAll(): List<SubjectPoints> {
         return subjectDao.findAll()
     }
 

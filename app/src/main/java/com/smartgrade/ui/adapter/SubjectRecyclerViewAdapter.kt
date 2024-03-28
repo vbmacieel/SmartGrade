@@ -3,13 +3,13 @@ package com.smartgrade.ui.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.smartgrade.data.local.model.Subject
+import com.smartgrade.data.local.model.relationship.SubjectPoints
 import com.smartgrade.databinding.ItemRecyclerViewBinding
 
 class SubjectRecyclerViewAdapter :
     RecyclerView.Adapter<SubjectRecyclerViewAdapter.SubjectViewHolder>() {
 
-    var subjectList: List<Subject> = emptyList()
+    var subjectList: List<SubjectPoints> = emptyList()
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -26,10 +26,11 @@ class SubjectRecyclerViewAdapter :
 
     inner class SubjectViewHolder(private val binding: ItemRecyclerViewBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(subject: Subject) {
+        fun bind(subject: SubjectPoints) {
             subject.apply {
                 binding.itemTitle.text = subject.name
-                binding.itemValue.text = subject.totalPoints.toString()
+                binding.itemTotalValue.text = subject.totalPoints.toString()
+                binding.itemEarnedValue.text = subject.earnedPoints.toString()
             }
         }
     }

@@ -6,11 +6,15 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.smartgrade.data.local.model.Subject
+import com.smartgrade.data.local.model.relationship.SubjectPoints
 
 @Dao
 interface SubjectDao {
-    @Query("SELECT * FROM subject")
-    suspend fun findAll(): List<Subject>
+    @Query("""
+        SELECT s.subjectId, s.name, s.totalPoints, SUM(g.earnedPoints) 
+        FROM subject s JOIN grade g ON s.subjectId = g.subjectId
+    """)
+    suspend fun findAll(): List<SubjectPoints>
 
     @Query("SELECT * FROM subject WHERE subjectId = :id")
     suspend fun findSubjectById(id: Int): Subject
