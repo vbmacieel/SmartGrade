@@ -6,6 +6,7 @@ import com.smartgrade.data.repository.SubjectRepository
 import com.smartgrade.data.repository.impl.GradeRepositoryImpl
 import com.smartgrade.data.repository.impl.SubjectRepositoryImpl
 import com.smartgrade.ui.viewmodel.FormViewModel
+import com.smartgrade.ui.viewmodel.GradeViewModel
 import com.smartgrade.ui.viewmodel.MainViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -22,4 +23,6 @@ val appModule = module {
     viewModel { MainViewModel(get()) }
 
     viewModel { FormViewModel(get()) }
+
+    viewModel { GradeViewModel(get()) }
 }

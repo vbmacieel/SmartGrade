@@ -2,7 +2,10 @@ package com.smartgrade.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.smartgrade.R
 import com.smartgrade.data.local.model.relationship.SubjectPoints
 import com.smartgrade.databinding.ItemRecyclerViewBinding
 
@@ -20,11 +23,21 @@ class SubjectRecyclerViewAdapter :
         return SubjectViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: SubjectViewHolder, position: Int) = holder.bind(subjectList[position])
+    override fun onBindViewHolder(holder: SubjectViewHolder, position: Int) {
+        val subject = subjectList[position]
+        holder.bind(subject)
+
+        holder.itemView.setOnClickListener { view ->
+            view.findNavController().navigate(R.id.action_subject_list_to_grades_list,
+                bundleOf("subjectId" to subject.subjectId))
+        }
+    }
 
     override fun getItemCount(): Int = subjectList.size
 
-    inner class SubjectViewHolder(private val binding: ItemRecyclerViewBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class SubjectViewHolder(
+        private val binding: ItemRecyclerViewBinding
+    ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(subject: SubjectPoints) {
             subject.apply {

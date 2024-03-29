@@ -11,6 +11,9 @@
         android:label="Subject List"
         tools:layout="@layout/fragment_list_subject">
         <action
+            android:id="@+id/action_subject_list_to_grades_list"
+            app:destination="@+id/list_grades" />
+        <action
             android:id="@+id/action_subject_list_to_add_subject"
             app:destination="@+id/add_subject" />
     </fragment>
@@ -20,7 +23,13 @@
         android:name="com.smartgrade.ui.fragment.FormFragment"
         android:label="Add Subject"
         tools:layout="@layout/fragment_form">
+    </fragment>
 
+    <fragment
+        android:id="@+id/list_grades"
+        android:name="com.smartgrade.ui.fragment.GradesListFragment"
+        android:label="Grades List"
+        tools:layout="@layout/fragment_list_grade">
     </fragment>
 
 </navigation>
