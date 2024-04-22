@@ -18,24 +18,54 @@ class FormFragment : Fragment() {
     }
 
     private val viewModel: FormViewModel by viewModel()
+    private var subjectId: Int? = null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        subjectId = arguments?.getInt("subjectId")
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        if (subjectId == null) binding.textFieldTotalPoints.visibility = View.GONE
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        if (subjectId == null) saveSubject() else saveGrade()
+    }
 
-        binding.subjectSubmitButton.setOnClickListener {
-            val textName = binding.subjectTextFieldName.editText?.labelNotNullOrEmpty()
-            val totalPoints = binding.subjectTextFieldPoints.editText?.labelNotNullOrEmpty()
+    private fun saveGrade() {
+        binding.submitButton.setOnClickListener {
+            val textName = binding.textFieldName.editText?.labelNotNullOrEmpty()
+            val totalPoints = binding.textFieldPoints.editText?.labelNotNullOrEmpty()
+            val totalGradePoints = binding.textFieldTotalPoints.editText?.labelNotNullOrEmpty()
 
-            if (textName == null || totalPoints == null){
-                Toast.makeText(context, "Neither labels must not be null", Toast.LENGTH_SHORT).show()
+            if (textName == null || totalPoints == null) {
+                Toast.makeText(context, "Neither labels must not be null", Toast.LENGTH_SHORT)
+                    .show()
+            } else {
+                subjectId?.let { id ->
+                    if (totalGradePoints != null) {
+                        viewModel.saveNewGrade(id, textName, totalPoints, totalGradePoints)
+                    }
+                }
+            }
+        }
+    }
+
+    private fun saveSubject() {
+        binding.submitButton.setOnClickListener {
+            val textName = binding.textFieldName.editText?.labelNotNullOrEmpty()
+            val totalPoints = binding.textFieldPoints.editText?.labelNotNullOrEmpty()
+
+            if (textName == null || totalPoints == null) {
+                Toast.makeText(context, "Neither labels must not be null", Toast.LENGTH_SHORT)
+                    .show()
             } else {
                 viewModel.saveNewSubject(textName, totalPoints)
             }

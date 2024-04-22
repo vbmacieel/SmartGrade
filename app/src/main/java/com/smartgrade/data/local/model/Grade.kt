@@ -5,7 +5,7 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class Grade(
-    @PrimaryKey(autoGenerate = true) var gradeId: Long,
+    @PrimaryKey(autoGenerate = true) var gradeId: Long = 0,
     var name: String,
     var earnedPoints: Long,
     var totalPoints: Long,
