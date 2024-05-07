@@ -22,7 +22,7 @@ val appModule = module {
 
     viewModel { MainViewModel(get()) }
 
-    viewModel { FormViewModel(get()) }
+    viewModel { FormViewModel(get(), get()) }
 
     viewModel { GradeViewModel(get()) }
 }
