@@ -16,6 +16,16 @@ val appModule = module {
 
     single { AppDatabase.getInstance(androidContext()) }
 
+    single {
+        val database = AppDatabase.getInstance(androidContext())
+        database.subjectDao()
+    }
+
+    single {
+        val database = AppDatabase.getInstance(androidContext())
+        database.gradeDao()
+    }
+
     single<SubjectRepository> { SubjectRepositoryImpl(get()) }
 
     single<GradeRepository> { GradeRepositoryImpl(get()) }

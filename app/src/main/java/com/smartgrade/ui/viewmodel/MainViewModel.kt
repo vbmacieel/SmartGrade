@@ -12,7 +12,7 @@ import kotlinx.coroutines.launch
 class MainViewModel(
     private val subjectRepository: SubjectRepository
 ) : ViewModel() {
-    private lateinit var _subjectList: MutableLiveData<List<SubjectPoints>>
+    private var _subjectList: MutableLiveData<List<SubjectPoints>> = MutableLiveData()
     val subjectList: LiveData<List<SubjectPoints>> = _subjectList
 
     fun findSubjectList() = viewModelScope.launch {

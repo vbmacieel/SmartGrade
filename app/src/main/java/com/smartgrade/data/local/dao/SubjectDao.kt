@@ -11,8 +11,9 @@ import com.smartgrade.data.local.model.relationship.SubjectPoints
 @Dao
 interface SubjectDao {
     @Query("""
-        SELECT s.subjectId, s.name, s.totalPoints, SUM(g.earnedPoints) 
+        SELECT s.subjectId, s.name, s.totalPoints, SUM(g.earnedPoints) AS earnedPoints
         FROM subject s JOIN grade g ON s.subjectId = g.subjectId
+        GROUP BY s.subjectId
     """)
     suspend fun findAll(): List<SubjectPoints>
 

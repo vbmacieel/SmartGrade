@@ -29,7 +29,7 @@ class SubjectRecyclerViewAdapter :
 
         holder.itemView.setOnClickListener { view ->
             view.findNavController().navigate(R.id.action_subject_list_to_grades_list,
-                bundleOf("subjectId" to subject.subjectId))
+                bundleOf("subjectId" to subject.subject.subjectId))
         }
     }
 
@@ -41,8 +41,8 @@ class SubjectRecyclerViewAdapter :
 
         fun bind(subject: SubjectPoints) {
             subject.apply {
-                binding.itemTitle.text = subject.name
-                binding.itemTotalValue.text = subject.totalPoints.toString()
+                binding.itemTitle.text = subject.subject.name
+                binding.itemTotalValue.text = subject.subject.totalPoints.toString()
                 binding.itemEarnedValue.text = subject.earnedPoints.toString()
             }
         }

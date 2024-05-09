@@ -1,8 +1,9 @@
 package com.smartgrade.data.local.model.relationship
 
+import androidx.room.Embedded
+import com.smartgrade.data.local.model.Subject
+
 data class SubjectPoints(
-    val subjectId: Int,
-    val name: String,
-    val totalPoints: Int,
+    @Embedded val subject: Subject,
     val earnedPoints: Int
 )
